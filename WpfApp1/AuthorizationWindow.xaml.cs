@@ -19,40 +19,34 @@ namespace WpfApp1
     /// </summary>
     public partial class AuthorizationWindow : Window
     {
-        DBContainer db;
         public AuthorizationWindow()
         {
             InitializeComponent();
-            db = new DBContainer();
         }
-
+        public string defLogin = "login";
+        public string defPassword = "123";
 
         private void AuthorizationClick(object sender, RoutedEventArgs e)
         {
-            if (login.Text == "" || password.Password == "")
+            string login = login2.Text;
+            string password = password2.Password;
+            if (login == defLogin && password == defPassword)
             {
-                MessageBox.Show("Ошибка пустые поля");
-                return;
+                MessageBox.Show("Вы успешно авторизировались!");
             }
-            if (db.Users.Select(item => item.Login + " " + item.Password).Contains(login.Text + " " + password.Password))
-            {
-                MessageBox.Show("Вы аоторизованы");
-            }
-            else
-            {
-                MessageBox.Show("Ошибка логина/пароля");
+            else { 
+                MessageBox.Show("Ошибка авторизации");
             }
         }
 
         private void RegistrationClick(object sender, RoutedEventArgs e)
         {
-            RegistrationWindow rg = new RegistrationWindow();
-            rg.Show();
             this.Close();
         }
 
-      
+        private void Login2_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
-    
+        }
     }
     }
